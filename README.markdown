@@ -1,0 +1,1 @@
+Repository where I put my presentations under version control. More about my talks on my website: http://www.stefanglase.de/publications
