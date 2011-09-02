@@ -1,0 +1,10 @@
+# Grails
+target
+
+# Eclipse
+.settings
+.classpath
+.project
+
+# CodeNarc
+CodeNarcReport.html

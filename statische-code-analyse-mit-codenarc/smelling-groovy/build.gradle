@@ -1,0 +1,15 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+// apply plugin: 'code-quality'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	groovy "org.codehaus.groovy:groovy-all:1.7.9"
+    testCompile "org.spockframework:spock-core:0.5-groovy-1.7"
+}
+
+// Violations should not break the build
+// [codenarcMain, codenarcTest]*.ignoreFailures = true 
