@@ -1,0 +1,9 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+apply from: 'https://raw.github.com/evgeny-goldin/gradle-plugins/master/src/main/groovy/CodeNarc.gradle'
+
+dependencies {
+    groovy "org.codehaus.groovy:groovy-all:1.7.9"
+    testCompile "org.spockframework:spock-core:0.5-groovy-1.7"
+}
