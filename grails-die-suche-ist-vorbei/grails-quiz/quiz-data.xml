@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+    <question text="Worauf basiert Grails?">
+        <answer correct="true">Spring Framework</answer>
+        <answer correct="false">String Framework</answer>
+        <answer correct="false">Sting Framework</answer>
+    </question>
+    <question text="Was ist das Ergebnis von (1..10).sum()?">
+        <answer correct="true">55</answer>
+        <answer correct="false">50</answer>
+        <answer correct="false">56</answer>
+        <answer correct="false">11</answer>
+    </question>
+    <question text="Wer ist der Erfinder von Groovy?">
+        <answer correct="true">James Strachan</answer>
+        <answer correct="false">Guillaume Laforge</answer>
+        <answer correct="false">Graeme Rocher</answer>
+    </question>
+    <question text="Wofür steht die Abkürzung AST?">
+        <answer correct="true">Abstract Syntax Tree</answer>
+        <answer correct="false">Absolute Super Type</answer>
+        <answer correct="false">Ambient Sound Transfer</answer>
+    </question>
+</quiz>
