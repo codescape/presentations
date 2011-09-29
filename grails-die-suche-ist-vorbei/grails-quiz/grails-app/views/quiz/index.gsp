@@ -1,9 +1,6 @@
 <html>
 <head>
-    <%-- decorate with the main layout (layouts/main.gsp) --%>
     <meta name="layout" content="main">
-    <%-- include prototype for ajax requests --%>
-    <g:javascript library="prototype"/>
 </head>
 <body>
 <div class="body">

@@ -13,5 +13,5 @@ if (Ajax && (Ajax != null)) {
 }
 
 function showResults() {
-    document.getElementById('results').style.display = 'block'
+	$('#results').css("display","block");
 }
