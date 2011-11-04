@@ -1,0 +1,132 @@
+# **********************************
+# Step-By-Step-Anleitung grails-quiz
+# 
+# Anmerkung: quiz-data.xml bereithalten!!
+#
+# **********************************
+
+# Anlegen einer neuen Webanwendung
+grails create-app grails-quiz
+
+# in neues Verzeichnis 'grails-quiz' wechseln 
+
+# Erstellen der Domänenobjekte
+grails create-domain-class quiz.Question
+grails create-domain-class quiz.Answer
+
+# Projekt in IntelliJ einbinden
+
+# Implementierung der Domänenobjekte
+class Question {
+    String text
+    static hasMany = [answers: Answer]
+
+    static constraints = {
+        text(blank: false, unique: true)
+    }
+    String toString() { text }
+}
+
+class Answer {
+    String text
+    boolean correct
+    static belongsTo = [question: Question]
+
+    static constraints = {
+        text(blank: false)
+    }
+    String toString() { text }
+}
+
+# Erstellen der Controller
+grails create-controller quiz.Question
+grails create-controller quiz.Answer
+
+# Scaffolding der Controller
+class QuestionController {
+    static scaffold = true
+}
+
+class AnswerController {
+    static scaffold = true
+}
+
+# Starten der Applikation
+grails run-app
+
+# Frage mit Antwort anlegen über WebApp
+Frage: Wer ist Bundeskanzler?
+Antwort: Angela Merkel (richtig)
+Antwort: Fred Feuerstein (falsch)
+
+# Testdaten in der Datenbank speichern
+import quiz.Question
+import quiz.Answer
+
+class BootStrap {
+  def init = { servletContext ->
+    environments {
+      development {
+        def quizData = new XmlSlurper().parse("quiz-data.xml")
+        quizData.question.each { question ->
+          def q = new Question(text: question.@text.text()).save()
+          question.answer.each { answer ->
+            new Answer(question: q, text: answer.text(), 
+                                    correct: answer.@correct.text()).save()
+          }
+        }
+      }
+    }
+  }
+}
+
+# Quiz Controller zur Darstellung der Fragen und Antworten anlegen
+grails create-controller quiz.Quiz
+
+class QuizController {
+    def index = {
+        [questionList: Question.list()]
+    }
+}
+
+# index.gsp unter views/quiz/ anlegen
+<html>
+  <head>
+      <meta name="layout" content="main"/>
+      <g:javascript library="jquery" plugin="jquery"/>
+  </head>
+  <body>
+    <div class="body">
+        <h1>Grails Quiz</h1>
+        <div id="results" class="message" style="display:none"></div>
+    
+        <g:each in="${questionList}" var="question">
+        <p>
+            <h2>${question.text}</h2>
+            <ul>
+                <g:each in="${question.answers}" var="answer">
+                <li>
+                  <g:remoteLink action="answer" id="${answer.id}" 
+                                update="results" onSuccess="showResults()">
+                     ${answer.text}
+                  </g:remoteLink>
+                </li>
+                </g:each>
+            </ul>
+        </p>
+        </g:each>
+    </div>
+  </body>
+</html>
+
+# application.js
+function showResults() {
+	$('#results').css("display","block");
+}
+
+# Closure answer in QuizController implementieren  
+def answer = {
+    def answer = Answer.get(params.int('id'))
+    render answer.correct ? "Hurra, die Antwort ist richtig!" : 
+                                  "Die Antwort '$answer' ist leider falsch!"
+}
