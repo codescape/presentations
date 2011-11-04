@@ -130,3 +130,5 @@ def answer = {
     render answer.correct ? "Hurra, die Antwort ist richtig!" : 
                                   "Die Antwort '$answer' ist leider falsch!"
 }
+
+# ggf. in main.css im ul-Tag das padding auf 5 stellen 
