@@ -80,6 +80,8 @@ class BootStrap {
   }
 }
 
+# quiz-data.xml Datei in Projektverzeichnis kopieren
+
 # Quiz Controller zur Darstellung der Fragen und Antworten anlegen
 grails create-controller quiz.Quiz
 
@@ -131,4 +133,4 @@ def answer = {
                                   "Die Antwort '$answer' ist leider falsch!"
 }
 
-# ggf. in main.css im ul-Tag das padding auf 5 stellen 
+# ggf. in main.css im ul-Tag das padding auf 5 stellen (evtl. Neustart) 
