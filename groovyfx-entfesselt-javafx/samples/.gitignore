@@ -1,0 +1,12 @@
+# Mac OS X
+.DS_Store
+
+# Gradle
+.gradle/
+build/
+
+# IntelliJ
+out/
+*.iml
+*.ipr
+*.iws

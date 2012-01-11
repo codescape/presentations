@@ -1,0 +1,26 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+javafxHome = System.env['JAVAFX_HOME']
+
+repositories {
+    mavenCentral()
+    flatDir { dirs 'lib' }
+}
+
+dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:1.8.0'
+    groovy 'asm:asm:3.2'
+    groovy files("${javafxHome}/rt/lib/jfxrt.jar")
+    groovy ':groovyfx:0.1-SNAPSHOT'
+}
+
+new File('src/main/groovy/samples').eachFileMatch(~/.*Sample.groovy/) { file ->
+    def taskName = file.name - '.groovy'
+    task "$taskName"(type: JavaExec) {
+        group = "Sample"
+        description = "Run the $taskName program"
+        main = "samples/$taskName"
+        classpath sourceSets.main.runtimeClasspath
+    }
+}
