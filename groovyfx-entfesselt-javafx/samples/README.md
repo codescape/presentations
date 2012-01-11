@@ -1,13 +1,13 @@
-Um die Beispiele auszuprobieren wird eine Installation des JavaFX 2.0 SDK benötigt und es muss die Umgebungsvariable `JAVAFX_HOME` gesetzt sein. Ferner wird eine Installation von Gradle benötigt.
+ï»¿Um die Beispiele auszuprobieren wird eine Installation des JavaFX 2.0 SDK benÃ¶tigt und es muss die Umgebungsvariable `JAVAFX_HOME` gesetzt sein. Ferner wird eine Installation von Gradle benÃ¶tigt.
 
 Das Projekt kann gebaut werden mit dem folgenden Befehl:
 
     gradle build
 
-Um zu sehen, welche Beispiele ausprobiert werden können:
+Um zu sehen, welche Beispiele ausprobiert werden kÃ¶nnen:
 
     gradle tasks
 
-Um ein spezielles Beispiel auszuführen:
+Um ein spezielles Beispiel auszufÃ¼hren:
 
     gradle HelloWorldSample
