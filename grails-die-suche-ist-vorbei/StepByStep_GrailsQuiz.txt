@@ -10,6 +10,8 @@ grails create-app grails-quiz
 
 # in neues Verzeichnis 'grails-quiz' wechseln 
 
+# Grails 2 interaktive Konsole zeigen
+
 # Erstellen der Domänenobjekte
 grails create-domain-class quiz.Question
 grails create-domain-class quiz.Answer
