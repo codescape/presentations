@@ -136,3 +136,18 @@ def answer = {
 }
 
 # ggf. in main.css im ul-Tag das padding auf 5 stellen (evtl. Neustart) 
+
+# Spring Security installieren zur Absicherung der Pflegemasken
+grails install-plugin spring-security-core
+grails s2-quickstart quiz.security User Role
+
+# Controller absichern und auf Klassenebene die beiden Controller QuizController und AnswerController annotieren
+@Secured(['ROLE_MANAGER'])
+
+# Benutzer und Rollen in BootStrap.groovy anlegen
+
+    def managerRole = Role.findByAuthority('ROLE_MANAGER') ?: new Role(authority: 'ROLE_MANAGER').save(failOnError: true)
+    def manager = User.findByUsername('manager') ?: new User(username: 'manager', password: 'geheim', enabled: true).save(failOnError: true)
+    UserRole.findByUserAndRole(manager, managerRole) ?: new UserRole(user: manager, role: managerRole).save(failOnError: true)
+    
+# Neustarten der Applikation und Verifizieren der Absicherung
